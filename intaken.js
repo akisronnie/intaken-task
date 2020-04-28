@@ -1,20 +1,8 @@
-const intakes = [
-    {time: "9:15", pills: 1},
-    {time: "15:35", pills: 2},
-    {time: "19:00", pills: 1},
-  ];
+const intakes = [{"time":"09:22","pills":4},{"time":"23:04","pills":4}];
 
-const stock = 40;
+const stock = 58;
 const frequency = "weekly"; //possible values - "daily", "eachOtherDay" (через день), "weekly";
-const weekDays = {
-  monday: true,
-  tuesday: false,
-  wednesday: false,
-  thursday: false,
-  friday: true,
-  saturday: false,
-  sunday: false,
-}; // this  parameter is REQUIRED ONLY for "weekly" frequency of intakes 
+const weekDays = {"monday":true,"tuesday":false,"wednesday":true,"thursday":false,"friday":false,"saturday":false,"sunday":true}; // this  parameter is REQUIRED ONLY for "weekly" frequency of intakes 
 
 
 function calculateIntakeEndDate(intakes, stock, frequency, weekDays) {
@@ -25,7 +13,7 @@ function calculateIntakeEndDate(intakes, stock, frequency, weekDays) {
         3: 'wednesday',
         4: 'thursday',
         5: 'friday',
-        6: 'sunday'
+        6: 'saturday'
     }
 
     const date = new Date();
@@ -59,7 +47,7 @@ function calculateIntakeEndDate(intakes, stock, frequency, weekDays) {
             }
 
             lastTime = element.time;
-            stock -= element.pills;
+            stock = stock - element.pills;
         });
 
         if (stock > 0) {
